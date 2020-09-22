@@ -3,7 +3,7 @@
     {
       "name": "Teste",
       "setup": "",
-      "run": "mvntest",
+      "run": "mvn test",
       "input": "",
       "output": "",
       "comparison": "included",
