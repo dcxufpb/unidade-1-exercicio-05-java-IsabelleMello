@@ -3,12 +3,11 @@
     {
       "name": "Teste",
       "setup": "",
-      "run": "mvntest",
+      "run": "gradle test",
       "input": "",
       "output": "",
       "comparison": "included",
-      "timeout": 10,
-      "points": 1
+      "timeout": 10
     }
   ]
 }

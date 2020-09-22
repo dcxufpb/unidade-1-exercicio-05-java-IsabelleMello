@@ -124,8 +124,9 @@ public class TestCupomFiscal {
 		"CNPJ: 22.300.551/0110-56" + BREAK + 
 		"IE: 432.118.667.777" + BREAK);
 	}
-	private void rodarTestarRetorno(String expected) {
 
+	private void rodarTestarRetorno(String expected) {
+		
 		// action
 		String retorno = CupomFiscal.dadosLoja();
 
