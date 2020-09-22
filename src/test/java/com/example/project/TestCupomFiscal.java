@@ -22,14 +22,22 @@ public class TestCupomFiscal {
 	@Test
 	public void nomeVazio() {
 		CupomFiscal.NOME_LOJA = "";
-		verificarCampoObrigatorio("O campo nome da loja é obrigatório");
+		try {
+			CupomFiscal.dadosLoja();
+		} catch (RuntimeException e) {
+			assertEquals("O campo nome da loja é obrigatório", e.getMessage());
+		}
 		CupomFiscal.NOME_LOJA = "Arcos Dourados Com. de Alimentos LTDA";
 	}
-
+	
 	@Test
 	public void logradouroVazio() {
 		CupomFiscal.LOGRADOURO = "";
-		verificarCampoObrigatorio("O campo logradouro do endereço é obrigatório");
+		try {
+			CupomFiscal.dadosLoja();
+		} catch (RuntimeException e) {
+			assertEquals("O campo logradouro do endereço é obrigatório", e.getMessage());
+		}
 		CupomFiscal.LOGRADOURO = "Av. Projetada Leste";
 	}
 
@@ -50,51 +58,72 @@ public class TestCupomFiscal {
 	@Test
 	public void municipioVazio() {
 		CupomFiscal.MUNICIPIO = "";
-		verificarCampoObrigatorio("O campo município do endereço é obrigatório");
+		try {
+			CupomFiscal.dadosLoja();
+		} catch (RuntimeException e) {
+			assertEquals("O campo município do endereço é obrigatório", e.getMessage());
+		}
 		CupomFiscal.MUNICIPIO = "Campinas";
 	}
 
 	@Test
 	public void estadoVazio() {
 		CupomFiscal.ESTADO = "";
-		verificarCampoObrigatorio("O campo estado do endereço é obrigatório");
+		try {
+			CupomFiscal.dadosLoja();
+		} catch (RuntimeException e) {
+			assertEquals("O campo estado do endereço é obrigatório", e.getMessage());
+		}
 	    CupomFiscal.ESTADO = "SP";
 	}
 	
 	@Test
 	public void cnpjVazio() {
 		CupomFiscal.CNPJ = "";
-		verificarCampoObrigatorio("O campo CNPJ da loja é obrigatório");
+		try {
+			CupomFiscal.dadosLoja();
+		} catch (RuntimeException e) {
+			assertEquals("O campo CNPJ da loja é obrigatório", e.getMessage());
+		}
 	    CupomFiscal.CNPJ = "42.591.651/0797-34";
 	}
 
 	@Test
 	public void inscricaoEstadualVazia() {
 		CupomFiscal.INSCRICAO_ESTADUAL = "";
-		verificarCampoObrigatorio("O campo inscrição estadual da loja é obrigatório");
+		try {
+			CupomFiscal.dadosLoja();
+		} catch (RuntimeException e) {
+			assertEquals("O campo inscrição estadual da loja é obrigatório", e.getMessage());
+		}
 		CupomFiscal.INSCRICAO_ESTADUAL = "244.898.500.113";
 	}
 	
 	@Test
 	public void exercicio02_Customizado() {
 		//Defina seus próprios valores para as variáveis a seguir 
-		CupomFiscal.NOME_LOJA = "";
-		CupomFiscal.LOGRADOURO = "";
-		CupomFiscal.NUMERO = 0;
-		CupomFiscal.COMPLEMENTO = "";
-		CupomFiscal.BAIRRO = "";
-		CupomFiscal.MUNICIPIO = "";
-		CupomFiscal.ESTADO = "";
-		CupomFiscal.CEP = "";
-		CupomFiscal.TELEFONE = "";
-		CupomFiscal.OBSERVACAO = "";
-		CupomFiscal.CNPJ = "";
-		CupomFiscal.INSCRICAO_ESTADUAL = "";
+		CupomFiscal.NOME_LOJA = "Boa vista Flores";
+		CupomFiscal.LOGRADOURO = "Rua Jardim Peres";
+		CupomFiscal.NUMERO = 122;
+		CupomFiscal.COMPLEMENTO = "EUC F30/31/44";
+		CupomFiscal.BAIRRO = "Centro";
+		CupomFiscal.MUNICIPIO = "Monteiro";
+		CupomFiscal.ESTADO = "PB";
+		CupomFiscal.CEP = "58500000";
+		CupomFiscal.TELEFONE = "(99) 9999-9999";
+		CupomFiscal.OBSERVACAO = "Loja 122 (PDB)";
+		CupomFiscal.CNPJ = "22.300.551/0110-56";
+		CupomFiscal.INSCRICAO_ESTADUAL = "432.118.667.777";
 		
 		//E atualize o texto esperado abaixo
-		rodarTestarRetorno("" + BREAK);
+		rodarTestarRetorno("Boa vista Flores" + BREAK + 
+		"Rua Jardim Peres, 122 EUC F30/31/44" + BREAK + 
+		"Centro - Monteiro - PB" + BREAK + 
+		"CEP:58500000 Tel (99) 9999-9999" + BREAK + 
+		"Loja 122 (PDB)" + BREAK + 
+		"CNPJ: 22.300.551/0110-56" + BREAK + 
+		"IE: 432.118.667.777" + BREAK);
 	}
-
 	private void rodarTestarRetorno(String expected) {
 
 		// action
@@ -103,13 +132,4 @@ public class TestCupomFiscal {
 		// assertion
 		assertEquals(expected, retorno);
 	}
-	
-	private void verificarCampoObrigatorio(String mensagemEsperada) {
-		try {
-			CupomFiscal.dadosLoja();
-		} catch (RuntimeException e) {
-			assertEquals(mensagemEsperada, e.getMessage());
-		}
-	}
-	
 }
