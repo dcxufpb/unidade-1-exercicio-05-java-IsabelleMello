@@ -101,7 +101,7 @@ public class TestCupomFiscal {
 	
 	@Test
 	public void exercicio02_Customizado() {
-		//Defina seus próprios valores para as variáveis a seguir 
+
 		CupomFiscal.NOME_LOJA = "Boa vista Flores";
 		CupomFiscal.LOGRADOURO = "Rua Jardim Peres";
 		CupomFiscal.NUMERO = 122;
@@ -115,7 +115,6 @@ public class TestCupomFiscal {
 		CupomFiscal.CNPJ = "22.300.551/0110-56";
 		CupomFiscal.INSCRICAO_ESTADUAL = "432.118.667.777";
 		
-		//E atualize o texto esperado abaixo
 		rodarTestarRetorno("Boa vista Flores" + BREAK + 
 		"Rua Jardim Peres, 122 EUC F30/31/44" + BREAK + 
 		"Centro - Monteiro - PB" + BREAK + 
@@ -126,7 +125,7 @@ public class TestCupomFiscal {
 	}
 
 	private void rodarTestarRetorno(String expected) {
-		
+
 		// action
 		String retorno = CupomFiscal.dadosLoja();
 
